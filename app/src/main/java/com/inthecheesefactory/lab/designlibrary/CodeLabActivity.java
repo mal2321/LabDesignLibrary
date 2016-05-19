@@ -1,17 +1,28 @@
 package com.inthecheesefactory.lab.designlibrary;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class CodeLabActivity extends AppCompatActivity {
 
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle drawerToggle;
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle drawerToggle;
+    public FloatingActionButton fabBtn;
+    public CoordinatorLayout rootLayout;
+    public Toolbar toolbar;
+    public TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +34,33 @@ public class CodeLabActivity extends AppCompatActivity {
 
     private void initInstances() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+
         drawerToggle = new ActionBarDrawerToggle(CodeLabActivity.this, drawerLayout, R.string.hello_world, R.string.hello_world);
         drawerLayout.setDrawerListener(drawerToggle);
 
+        setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 4"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 5"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 6"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 7"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 8"));
+
+        fabBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(rootLayout, "Hello. I am Snackbar!", Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
